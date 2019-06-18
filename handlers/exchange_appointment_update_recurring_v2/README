@@ -1,0 +1,29 @@
+== Exchange_Appointments_Retrieve
+This handler returns all Exchange appointments within a given time range.  
+
+=== Parameters
+[Start Time]
+  All appointments returned will be after this time, which is in 
+  'YYYY-MM-DD HH:mm' format.
+[End Time]
+  All appointments returned will be before this time, which is in 
+  'YYYY-MM-DD HH:mm' format.
+
+=== Results
+[JSON]
+  A JSON table that returns the relevant information for each appointment in 
+  the time frame.
+
+==== Sample Configuration
+Start Time:            2012-08-09 12:00
+End Time:              2013-08-15 15:00
+
+=== Detailed Description
+This handler uses the Exchange Web Services Java API to return all Exchange
+appointments within a given time range. After configuring the API to connect
+to the server and getting the correct time frame, an API call is made which
+returns an Array of appointment objects. This Array is then iterated over to
+make a JSON table with all of the relevant appointment data. Each appointment
+has a hash that contains the subject, location, start and end time, as well as
+the organizer and both the required and optional attendees. Any errors 
+encountered will be caught and re-raised by the handler.

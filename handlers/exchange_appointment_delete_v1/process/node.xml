@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taskDefinition id="exchange_appointment_delete" name="Exchange Appointment Delete" schema_version="1.0" version="1">
+    <author>support@kineticdata.com</author>
+    <description>This handler deletes an Exchange Appointment</description>
+    <helpurl>http://ktc.kineticdata.com/handler/exchange_appointment_delete/1</helpurl>
+    <visible>true</visible>
+    <deferrable>false</deferrable>
+    <parameters>
+        <parameter id="appointment_id" label="Appointment Id" required="true"
+            tooltip="Id of the appointment to be deleted."/>
+    </parameters>
+    <handler name="exchange_appointment_delete" version="1">
+        <infos>
+            <info name="username">&lt;%= @info['username'] %&gt;</info>
+            <info name="password">&lt;%= @info['password'] %&gt;</info>
+            <info name="server_address">&lt;%= @info['server_address'] %&gt;</info>
+            <info name="enable_debug_logging">&lt;%= @info['enable_debug_logging'] %&gt;</info>
+        </infos>
+        <parameters>
+            <parameter name="appointment_id">&lt;%= @parameters['appointment_id'] %&gt;</parameter>
+        </parameters>
+    </handler>
+    <results/>
+</taskDefinition>

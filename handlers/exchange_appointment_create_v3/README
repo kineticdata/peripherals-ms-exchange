@@ -1,0 +1,40 @@
+== Exchange_Appointment_Create
+  This handler creates a new Exchange appointment
+
+=== Parameters
+[Subject]
+  The subject of the new appointment
+[Location]
+  The location of the new appointment
+[Body]
+  The body of the new appointment
+[Start (UTC)]
+  The start of the new appointment in UTC with the format 'YYYY-MM-DDTHH:mm:ss'.
+[End (UTC)]
+  The end of the new appointment in UTC with the format 'YYYY-MM-DDTHH:mm:ss'.
+[Required Attendees]
+  A comma separated list of email addresses that should be required to attend 
+  the appointment.
+[Optional Attendees]
+  A comma separated list of email addresses that can optionally attend the 
+  appointment.
+
+=== Results
+[Id]
+  The id of the newly created appointment
+
+==== Sample Configuration
+Subject:                Test appointment
+Location:               East Conference Room
+Body:                   Conference call number is 999-999-9999
+Start (UTC):            2016-03-07 19:00
+End (UTC):              2016-03-07 20:00
+Required Attendees:     don.demo@acme.com
+Optional Attendees:     mary.manager@acme.com,john.doe@acme.com
+
+=== Detailed Description
+This handler uses the Exchange Web Services (accessed through the Viewpoint ruby
+gem) to delete an existing appointment. After configuring the API to connect
+to the server, the appointment will be created and the handler will return an
+id that can be used to access the newly created appointment at a later time. 
+Any errors encountered will be caught and re-raised by the handler.

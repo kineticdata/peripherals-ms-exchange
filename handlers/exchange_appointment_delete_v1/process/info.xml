@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taskInfo version="1.0">
+    <info name="username" description="The username for the Exchange account."></info>
+    <info name="password" type="encrypted" description="The password for the Exchange account."></info>
+    <info name="server_address" description="The address for the Exchange server, including the 'https://'"></info>
+    <info name="enable_debug_logging" description="Enable debug logging if the value is set to 'Yes'.">No</info>
+</taskInfo>

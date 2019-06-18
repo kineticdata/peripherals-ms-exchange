@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taskDefinition id="exchange_appointment_search" name="Exchange Appointment Search" schema_version="1.0" version="1">
+    <author>support@kineticdata.com</author>
+    <description>This handler searches for Exchange appointments based on a start and end date.</description>
+    <helpurl>http://ktc.kineticdata.com/handler/exchange_appointment_search/1</helpurl>
+    <visible>true</visible>
+    <deferrable>false</deferrable>
+    <parameters>
+        <parameter id="start" label="Start Date" required="true"
+            tooltip="The date to start the search with the format 'YYYY-MM-DD'."/>
+        <parameter id="end" label="End Date" required="true"
+            tooltip="The date to end the search with the format 'YYYY-MM-DD'."/>
+        <parameter id="subject" label="Subject" required="false"
+            tooltip="A string to search the contents of the subject. Doesn't need to be an exact match, just checks if it contained in the subject."/>
+    </parameters>
+    <handler name="exchange_appointment_search" version="1">
+        <infos>
+            <info name="username">&lt;%= @info['username'] %&gt;</info>
+            <info name="password">&lt;%= @info['password'] %&gt;</info>
+            <info name="server_address">&lt;%= @info['server_address'] %&gt;</info>
+            <info name="enable_debug_logging">&lt;%= @info['enable_debug_logging'] %&gt;</info>
+        </infos>
+        <parameters>
+            <parameter name="start">&lt;%= @parameters['start'] %&gt;</parameter>
+            <parameter name="end">&lt;%= @parameters['end'] %&gt;</parameter>
+            <parameter name="subject">&lt;%= @parameters['subject'] %&gt;</parameter>
+        </parameters>
+    </handler>
+    <results>
+        <result name="appointments_json"/>
+    </results>
+</taskDefinition>

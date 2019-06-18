@@ -1,0 +1,49 @@
+== Exchange_Appointment_Update
+This handler updates an existing Exchange Appointment.  
+
+=== Parameters
+[Appointment Id]
+  Id of the appointment to be updated.
+[Subject]
+  The subject of the appointment
+[Location]
+  The location of the appointment
+[Body]
+  The body of the appointment
+[Start (UTC)]
+  The start of the appointment in UTC with the format 'YYYY-MM-DDTHH:mm:ss'.
+[End (UTC)]
+  The end of the appointment in UTC with the format 'YYYY-MM-DDTHH:mm:ss'.
+[Required Attendees]
+  A comma separated list of email addresses that should be required to attend 
+  the appointment. If left blank, all previous required attendees are uninvited.
+[Optional Attendees]
+  A comma separated list of email addresses that can optionally attend the 
+  appointment. If left blank, all previous optional attendees are uninvited.
+
+=== Results
+This handler returns no results
+
+==== Sample Configuration
+Appointment Id:            AAMkADVjNDJhODA5LThjZjr7R...Y2rEhHPAAH5LzWtAAA=
+Subject:                Test appointment
+Location:               East Conference Room
+Body:                   Conference call number is 999-999-9999
+Start (UTC):            2016-03-07 19:00
+End (UTC):              2016-03-07 20:00
+Required Attendees:     don.demo@acme.com
+Optional Attendees:     mary.manager@acme.com,john.doe@acme.com
+
+=== Detailed Description
+This handler uses the Exchange Web Services (accessed through the Viewpoint ruby
+gem) to delete an existing appointment. After configuring the API to connect
+to the server the appointment corresponding to the inputted id is retrieved. 
+If it is successfully found, the appointment will use the inputted item 
+information to create an update object, which will then be sent to Exchange to
+update the item. Any errors encountered will be caught and re-raised by the 
+handler.
+
+Note: For every field except Required and Optional Attendees, if you don't pass
+any values the original values will remain the same. For Required and Optional
+Attendees, if you don't pass any values all the people who were invited in the
+original appointment will be uninvited.

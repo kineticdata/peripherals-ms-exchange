@@ -1,0 +1,30 @@
+== Exchange_Appointment_Search
+This handler searches for Exchange appointments based on a start and end date.
+
+=== Parameters
+[Start Date]
+  The date to start the search with the format 'YYYY-MM-DD'.
+[End Date]
+  The date to end the search with the format 'YYYY-MM-DD'.
+[Subject]
+  A string to search the contents of the subject. Doesn't need to be an exact 
+  match, just checks if it contained in the subject.
+
+=== Results
+[Appointments JSON]
+  A JSON table that returns the relevant information for each appointment in 
+  the time frame.
+
+==== Sample Configuration
+Start Date:            2016-03-09
+End Date:              2016-03-15
+
+=== Detailed Description
+This handler uses the Exchange Web Services (accessed through the Viewpoint ruby
+gem) to search for existing appointments. After configuring the API to connect
+to the server the api starts by searching for all events between the Start and
+End date. If a Subject was also passed as a parameter, the results of the first
+search will be iterated through to see if the inputted subject is contained in
+any of the returned items subject line. All of the items that match both 
+conditions are then finally returned in JSON format. Any errors encountered
+will be caught and re-raised by the handler.

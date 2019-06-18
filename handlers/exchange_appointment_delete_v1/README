@@ -1,0 +1,21 @@
+== Exchange_Appointment_Delete
+This handler deletes an Exchange Appointment.  
+
+=== Parameters
+[Appointment Id]
+  Id of the appointment to be deleted.
+
+=== Results
+This handler returns no results
+
+==== Sample Configuration
+Appointment Id:            AAMkADVjNDJhODA5LThjZjr7R...Y2rEhHPAAH5LzWtAAA=
+
+
+=== Detailed Description
+This handler uses the Exchange Web Services (accessed through the Viewpoint ruby
+gem) to delete an existing appointment. After configuring the API to connect
+to the server the appointment corresponding to the inputted id is retrieved. 
+If it is successfully found, the appointment will deleted and exchange will send 
+messages to any of the attendees that were attached to the item. Any errors 
+encountered will be caught and re-raised by the handler.

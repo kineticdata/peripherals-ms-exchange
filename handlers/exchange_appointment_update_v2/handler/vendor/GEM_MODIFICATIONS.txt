@@ -1,0 +1,29 @@
+The following modifications were made to the vendor libraries in order to make
+them compatible with the Kinetic Task process:
+
+Viewpoint
+ * Added the version file to the Viewpoint gem at lib/viewpoint/version.rb
+ * Automatically adding the SOAP prefix in lib/ews/soap/builders/ews_builder.rb
+ starting on line 49 because the java version of nokogiri wasn't adding it automatically
+ * Added an Array type to /lib/ews/types/calendar_item.rb at lines 80-85
+    NOTE: If you are passing an Array, you will need to use the build_xml 
+    structure when structuring your arrays.
+    ie. If you are passing text, {:name => {:text => "First Name"}}
+    If you are passing nested elements {:attendee => {:sub_elements => [{:name => {:text => "First Name"}}]}}
+ * Changed /lib/ews/types/calendar_item.rb at line 32 to use the passed in 
+ :send_meeting_invitations value if it is present
+
+ * Commented out line 154 in /lib/ews/types/item_field_uri_map.rb
+   'recurrence' is replicated from line 121.
+   121 is the calendar recurrence; 154 is task recurrence
+   This only affected our update process for recurring calendar events, but would most likely affect task recurrences
+
+ * Updated lib/web/soap/builders/ews_builder.rb
+ 	Commented out line 1248-1249 and added line 1250.  The actual occurrence_item_id! handles the item variable
+ 		1248:  #occurrence_item_id!(
+        1249:  #  item[:recurring_master_id], item[:change_key], item[:instance_index])
+        1250:  occurrence_item_id!(item) 
+
+     Commented out line 1248-1249 and added line 1250.  The actual recurring_master_item_id! handles the item variable
+ 		1252:  #recurring_master_item_id!(item[:occurrence_id], item[:change_key])
+        1253:  recurring_master_item_id!(item)

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taskDefinition id="exchange_appointment_find_occurrence" name="Exchange Appointment Find Occurrence" schema_version="1.0" version="1">
+    <author>support@kineticdata.com</author>
+    <description>This handler finds an occurrence id of a recurring event when provided a date range specific to the occurrence and the master recurring event ID</description>
+    <helpurl>http://community.kineticdata.com/20_Kinetic_Task/Task_Handlers_and_Sources/Microsoft_Exchange/Microsoft_Exchange_Appointment_Update_Recurring</helpurl>
+    <visible>true</visible>
+    <deferrable>false</deferrable>
+    <parameters>
+        <parameter id="start" label="Start (UTC)" required="true"
+            tooltip="The start of the new appointment in UTC with the format 'YYYY-MM-DDTHH:mm:ss'."/>
+        <parameter id="end" label="End (UTC)" required="true"
+            tooltip="The end of the new appointment in UTC with the format 'YYYY-MM-DDTHH:mm:ss'."/>
+        <parameter id="recurring_master_id" label="Recurring Master ID" required="true"
+            tooltip="The recurring master ID value for the appointment, returned then the recurring event appointment was created."/>
+    </parameters>
+    <handler name="exchange_appointment_find_occurrence" version="1">
+        <infos>
+            <info name="username">&lt;%= @info['username'] %&gt;</info>
+            <info name="password">&lt;%= @info['password'] %&gt;</info>
+            <info name="server_address">&lt;%= @info['server_address'] %&gt;</info>
+            <info name="enable_debug_logging">&lt;%= @info['enable_debug_logging'] %&gt;</info>
+        </infos>
+        <parameters>
+            <parameter name="start">&lt;%= @parameters['start'] %&gt;</parameter>
+            <parameter name="end">&lt;%= @parameters['end'] %&gt;</parameter>
+            <parameter name="recurring_master_id">&lt;%= @parameters['recurring_master_id'] %&gt;</parameter>
+        </parameters>
+    </handler>
+    <results>
+        <result name="occurrence_id"/>
+    </results>
+</taskDefinition>
