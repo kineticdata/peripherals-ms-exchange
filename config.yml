@@ -1,0 +1,10 @@
+---
+repo-name: peripherals-ms-exchange
+categories:
+- Messaging
+display-name: Microsoft Exchange
+manufacture: Microsoft
+product: Exchange
+description: Microsoft Exchange is a mail server and calendaring server developed
+  by Microsoft.
+thumbnail: thumbnail.png
